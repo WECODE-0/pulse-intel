@@ -104,7 +104,7 @@ pulseintel/
 
 ### Step 1 — Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/pulseintel.git
+git clone https://github.com/WECODE-0/pulse-intel.git
 cd pulseintel
 ```
 

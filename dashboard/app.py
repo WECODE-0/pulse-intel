@@ -35,7 +35,7 @@ st.markdown("""
     --warning: #F59E0B;
     --danger: #EF4444;
     --text: #F1F5F9;
-    --muted: #64748B;
+    --muted: #94A3B8;
     --mono: 'Space Mono', monospace;
     --sans: 'DM Sans', sans-serif;
 }
@@ -47,11 +47,37 @@ st.markdown("""
     color: var(--text);
 }
 
-/* hide default streamlit elements */
 #MainMenu, footer, header { visibility: hidden; }
 .block-container { padding: 2rem 3rem; max-width: 1400px; }
 
-/* ── Hero Header ── */
+/* ── Input fix — placeholder and text color ── */
+.stTextInput input {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 10px !important;
+    color: #FFFFFF !important;
+    font-family: var(--mono) !important;
+    font-size: 0.95rem !important;
+    padding: 0.75rem 1rem !important;
+    transition: border-color 0.2s;
+}
+.stTextInput input::placeholder {
+    color: #64748B !important;
+    opacity: 1 !important;
+}
+.stTextInput input:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15) !important;
+}
+.stTextInput label {
+    color: #94A3B8 !important;
+    font-size: 0.8rem !important;
+    font-family: var(--mono) !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+}
+
+/* ── Hero ── */
 .hero {
     padding: 3rem 0 2rem 0;
     border-bottom: 1px solid var(--border);
@@ -78,16 +104,33 @@ st.markdown("""
     line-height: 1;
     margin: 0.5rem 0;
 }
-.hero-title span {
-    color: var(--accent);
-}
+.hero-title span { color: var(--accent); }
 .hero-subtitle {
-    color: var(--muted);
+    color: #94A3B8;
     font-size: 1rem;
     font-weight: 300;
     margin-top: 0.75rem;
     max-width: 600px;
+    line-height: 1.6;
 }
+.hero-description {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.hero-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: #CBD5E1;
+}
+.hero-pill span { color: var(--accent); font-weight: 600; }
 
 /* ── Tabs ── */
 .stTabs [data-baseweb="tab-list"] {
@@ -99,7 +142,7 @@ st.markdown("""
 }
 .stTabs [data-baseweb="tab"] {
     background: transparent;
-    color: var(--muted);
+    color: #94A3B8;
     border-radius: 8px;
     font-family: var(--sans);
     font-size: 0.9rem;
@@ -111,32 +154,7 @@ st.markdown("""
     background: var(--accent) !important;
     color: white !important;
 }
-.stTabs [data-baseweb="tab-panel"] {
-    padding-top: 2rem;
-}
-
-/* ── Input ── */
-.stTextInput input {
-    background: var(--surface) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 10px !important;
-    color: var(--text) !important;
-    font-family: var(--mono) !important;
-    font-size: 0.95rem !important;
-    padding: 0.75rem 1rem !important;
-    transition: border-color 0.2s;
-}
-.stTextInput input:focus {
-    border-color: var(--accent) !important;
-    box-shadow: 0 0 0 3px rgba(59,130,246,0.15) !important;
-}
-.stTextInput label {
-    color: var(--muted) !important;
-    font-size: 0.8rem !important;
-    font-family: var(--mono) !important;
-    letter-spacing: 0.05em !important;
-    text-transform: uppercase !important;
-}
+.stTabs [data-baseweb="tab-panel"] { padding-top: 2rem; }
 
 /* ── Buttons ── */
 .stButton button {
@@ -156,7 +174,7 @@ st.markdown("""
     box-shadow: 0 8px 25px rgba(59,130,246,0.3) !important;
 }
 
-/* ── Metric Cards ── */
+/* ── Metrics ── */
 .metric-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -184,7 +202,7 @@ st.markdown("""
 .metric-label {
     font-family: var(--mono);
     font-size: 0.65rem;
-    color: var(--muted);
+    color: #64748B;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
@@ -220,7 +238,7 @@ st.markdown("""
 .brief-signal {
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text);
+    color: #F1F5F9;
     margin-bottom: 1rem;
     line-height: 1.5;
 }
@@ -241,14 +259,14 @@ st.markdown("""
 .brief-item-label {
     font-family: var(--mono);
     font-size: 0.65rem;
-    color: var(--muted);
+    color: #64748B;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 0.4rem;
 }
 .brief-item-value {
     font-size: 0.85rem;
-    color: var(--text);
+    color: #F1F5F9;
     font-weight: 500;
 }
 .confidence-badge {
@@ -319,7 +337,7 @@ st.markdown("""
 .badge-credential_leak { background: rgba(245,158,11,0.15); color: var(--warning); }
 .badge-lookalike_domain { background: rgba(167,139,250,0.15); color: #A78BFA; }
 .badge-impersonation { background: rgba(6,182,212,0.15); color: var(--accent2); }
-.badge-other { background: rgba(100,116,139,0.15); color: var(--muted); }
+.badge-other { background: rgba(100,116,139,0.15); color: #94A3B8; }
 .threat-summary {
     font-size: 0.875rem;
     color: #CBD5E1;
@@ -328,7 +346,7 @@ st.markdown("""
 .threat-url {
     font-family: var(--mono);
     font-size: 0.7rem;
-    color: var(--muted);
+    color: #64748B;
     margin-top: 0.4rem;
     word-break: break-all;
 }
@@ -365,7 +383,7 @@ st.markdown("""
 .section-header {
     font-family: var(--mono);
     font-size: 0.7rem;
-    color: var(--muted);
+    color: #64748B;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin: 2rem 0 1rem 0;
@@ -384,34 +402,17 @@ st.markdown("""
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
-    color: var(--muted);
+    color: #64748B;
 }
-.empty-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    opacity: 0.4;
-}
-.empty-text {
-    font-family: var(--mono);
-    font-size: 0.85rem;
-}
+.empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.4; }
+.empty-text { font-family: var(--mono); font-size: 0.85rem; }
 
-/* ── Filter ── */
-.stSelectbox select {
+/* ── Selectbox ── */
+.stSelectbox > div > div {
     background: var(--surface) !important;
     border: 1px solid var(--border) !important;
-    color: var(--text) !important;
     border-radius: 8px !important;
-}
-
-/* ── Spinner ── */
-.stSpinner { color: var(--accent) !important; }
-
-/* ── Success/Warning/Info ── */
-.stSuccess, .stInfo, .stWarning {
-    border-radius: 10px !important;
-    font-family: var(--mono) !important;
-    font-size: 0.85rem !important;
+    color: #F1F5F9 !important;
 }
 
 /* ── Footer ── */
@@ -422,7 +423,7 @@ st.markdown("""
     text-align: center;
     font-family: var(--mono);
     font-size: 0.7rem;
-    color: var(--muted);
+    color: #64748B;
     letter-spacing: 0.05em;
 }
 </style>
@@ -475,14 +476,43 @@ def get_mention_count(brand: str) -> int:
     conn.close()
     return count
 
+def run_gtm(company: str):
+    """Run full GTM pipeline."""
+    with st.spinner(f"Scraping job postings for {company}..."):
+        jobs = asyncio.run(scrape_company_jobs(company))
+    st.success(f"✅ {len(jobs)} job postings scraped")
+    with st.spinner("AI analyzing hiring signals..."):
+        brief = run_gtm_analysis(company)
+    if brief:
+        st.success("✅ Strategy brief generated")
+    else:
+        st.warning("Analysis failed. Try again.")
+
+def run_security(brand: str):
+    """Run full security pipeline."""
+    with st.spinner(f"Scanning open web for {brand} threats..."):
+        mentions = asyncio.run(scrape_brand_threats(brand))
+    st.success(f"✅ {len(mentions)} web mentions found")
+    with st.spinner("AI analyzing threats and scoring risks..."):
+        threats = run_threat_analysis(brand)
+    if threats:
+        st.success(f"✅ {len(threats)} threats identified")
+    else:
+        st.warning("No threats found.")
+
 # ── Hero Header ──────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
     <div class="hero-badge">⚡ WEB DATA UNLOCKED HACKATHON 2026</div>
     <div class="hero-title">Pulse<span>Intel</span></div>
     <div class="hero-subtitle">
-        Enterprise web intelligence platform. 
-        Monitor competitors. Detect threats. Powered by Bright Data + AI.
+        Enterprise web intelligence platform built for modern security
+        and revenue teams. Monitor competitors. Detect threats. Act fast.
+    </div>
+    <div class="hero-description">
+        <div class="hero-pill">📈 <span>GTM Intelligence</span> — Turn competitor hiring into strategy briefs</div>
+        <div class="hero-pill">🛡️ <span>Security</span> — Detect phishing, leaks and impersonation in real time</div>
+        <div class="hero-pill">⚡ <span>Bright Data</span> — Powered by real-time open web access</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -508,25 +538,16 @@ with tab1:
     with col2:
         st.write("")
         st.write("")
-        run_gtm = st.button(
+        analyze_clicked = st.button(
             "⚡ Analyze",
             key="run_gtm",
             use_container_width=True
         )
 
-    # ── Run Analysis ─────────────────────────────────────────
-    if run_gtm and company_input:
-        with st.spinner(f"Scraping job postings for {company_input}..."):
-            jobs = asyncio.run(scrape_company_jobs(company_input))
-        st.success(f"✅ {len(jobs)} job postings scraped")
-
-        with st.spinner("AI analyzing hiring signals..."):
-            brief = run_gtm_analysis(company_input)
-
-        if brief:
-            st.success("✅ Strategy brief generated")
-        else:
-            st.warning("Analysis failed. Try again.")
+    # trigger on button click OR enter key
+    if (analyze_clicked or company_input) and company_input:
+        if analyze_clicked:
+            run_gtm(company_input)
 
     # ── Metrics ──────────────────────────────────────────────
     if company_input:
@@ -544,13 +565,13 @@ with tab1:
                 <div class="metric-label">Briefs Generated</div>
                 <div class="metric-value">{len(briefs)}</div>
             </div>
-            <div class="metric-card {'success' if confidence == 'High' else 'warning'}">
+            <div class="metric-card {'success' if confidence == 'High' else 'warning' if confidence == 'Medium' else ''}">
                 <div class="metric-label">Confidence</div>
-                <div class="metric-value {'success' if confidence == 'High' else 'warning'}">{confidence}</div>
+                <div class="metric-value {'success' if confidence == 'High' else 'warning' if confidence == 'Medium' else ''}">{confidence}</div>
             </div>
             <div class="metric-card">
                 <div class="metric-label">Data Source</div>
-                <div class="metric-value" style="font-size:1rem;margin-top:4px;">Bright Data</div>
+                <div class="metric-value" style="font-size:0.9rem;margin-top:6px;">Bright Data</div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -560,21 +581,17 @@ with tab1:
         briefs = get_strategy_briefs(company_input)
 
         if briefs:
-            st.markdown('<div class="section-header">Strategy Briefs</div>',
-                       unsafe_allow_html=True)
-
+            st.markdown(
+                '<div class="section-header">Strategy Briefs</div>',
+                unsafe_allow_html=True
+            )
             for brief in briefs:
                 confidence = brief.get("confidence", "Low")
                 conf_class = f"confidence-{confidence.lower()}"
-
                 st.markdown(f"""
                 <div class="brief-card">
-                    <div class="brief-signal">
-                        📡 {brief.get('signal', '')}
-                    </div>
-                    <div class="brief-intel">
-                        {brief.get('intel', '')}
-                    </div>
+                    <div class="brief-signal">📡 {brief.get('signal', '')}</div>
+                    <div class="brief-intel">{brief.get('intel', '')}</div>
                     <div>
                         <span class="confidence-badge {conf_class}">
                             {confidence} Confidence
@@ -583,30 +600,20 @@ with tab1:
                     <div class="brief-grid">
                         <div>
                             <div class="brief-item-label">Timeline</div>
-                            <div class="brief-item-value">
-                                {brief.get('expected_timeline', '—')}
-                            </div>
+                            <div class="brief-item-value">{brief.get('expected_timeline', '—')}</div>
                         </div>
                         <div>
                             <div class="brief-item-label">Jobs Analyzed</div>
-                            <div class="brief-item-value">
-                                {brief.get('jobs_analyzed', 0)}
-                            </div>
+                            <div class="brief-item-value">{brief.get('jobs_analyzed', 0)}</div>
                         </div>
                         <div>
                             <div class="brief-item-label">Generated</div>
-                            <div class="brief-item-value">
-                                {str(brief.get('created_at', ''))[:10]}
-                            </div>
+                            <div class="brief-item-value">{str(brief.get('created_at', ''))[:10]}</div>
                         </div>
                     </div>
-                    <div style="margin-top:1rem;padding-top:1rem;
-                                border-top:1px solid #1E293B;">
-                        <div class="brief-item-label">
-                            Threat To Competitors
-                        </div>
-                        <div class="brief-item-value" style="margin-top:0.4rem;
-                             color:#94A3B8;font-size:0.85rem;line-height:1.6;">
+                    <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #1E293B;">
+                        <div class="brief-item-label">Threat To Competitors</div>
+                        <div class="brief-item-value" style="margin-top:0.4rem;color:#94A3B8;font-size:0.85rem;line-height:1.6;">
                             {brief.get('threat_to_competitors', '—')}
                         </div>
                     </div>
@@ -616,9 +623,7 @@ with tab1:
             st.markdown("""
             <div class="empty-state">
                 <div class="empty-icon">📊</div>
-                <div class="empty-text">
-                    Enter a company name and click Analyze
-                </div>
+                <div class="empty-text">Enter a company name and click Analyze</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -637,39 +642,26 @@ with tab2:
     with col2:
         st.write("")
         st.write("")
-        run_security = st.button(
+        scan_clicked = st.button(
             "🔍 Scan",
             key="run_security",
             use_container_width=True
         )
 
-    # ── Run Scan ─────────────────────────────────────────────
-    if run_security and brand_input:
-        with st.spinner(f"Scanning open web for {brand_input} threats..."):
-            mentions = asyncio.run(scrape_brand_threats(brand_input))
-        st.success(f"✅ {len(mentions)} web mentions found")
-
-        with st.spinner("AI analyzing threats and scoring risks..."):
-            threats = run_threat_analysis(brand_input)
-
-        if threats:
-            st.success(f"✅ {len(threats)} threats identified")
-        else:
-            st.warning("No threats found.")
+    # trigger on button click OR enter key
+    if (scan_clicked or brand_input) and brand_input:
+        if scan_clicked:
+            run_security(brand_input)
 
     # ── Metrics ──────────────────────────────────────────────
     if brand_input:
         mention_count = get_mention_count(brand_input)
         threats = get_threat_alerts(brand_input)
 
-        critical = len([t for t in threats
-                       if t.get("risk_level") == "CRITICAL"])
-        high = len([t for t in threats
-                   if t.get("risk_level") == "HIGH"])
-        medium = len([t for t in threats
-                     if t.get("risk_level") == "MEDIUM"])
-        low = len([t for t in threats
-                  if t.get("risk_level") == "LOW"])
+        critical = len([t for t in threats if t.get("risk_level") == "CRITICAL"])
+        high = len([t for t in threats if t.get("risk_level") == "HIGH"])
+        medium = len([t for t in threats if t.get("risk_level") == "MEDIUM"])
+        low = len([t for t in threats if t.get("risk_level") == "LOW"])
 
         st.markdown(f"""
         <div class="metric-row">
@@ -711,22 +703,19 @@ with tab2:
                 )
 
             filtered = threats if filter_level == "All" else [
-                t for t in threats
-                if t.get("risk_level") == filter_level
+                t for t in threats if t.get("risk_level") == filter_level
             ]
 
             st.markdown(
-                f'<p style="color:#64748B;font-family:monospace;'
-                f'font-size:0.8rem;">Showing {len(filtered)} threats</p>',
+                f'<p style="color:#64748B;font-family:monospace;font-size:0.8rem;">'
+                f'Showing {len(filtered)} threats</p>',
                 unsafe_allow_html=True
             )
 
             for threat in filtered:
                 risk = threat.get("risk_level", "LOW").lower()
                 score = threat.get("risk_score", 0)
-                threat_type = threat.get(
-                    "threat_type", "other"
-                ).lower().replace(" ", "_")
+                threat_type = threat.get("threat_type", "other").lower().replace(" ", "_")
                 url = threat.get("source_url", "")
                 summary = threat.get("summary", "")
 
@@ -740,9 +729,7 @@ with tab2:
                         <div class="threat-summary">{summary}</div>
                         <div class="threat-url">🔗 {url[:90]}{'...' if len(url) > 90 else ''}</div>
                     </div>
-                    <span class="risk-level-pill pill-{risk}">
-                        {risk.upper()}
-                    </span>
+                    <span class="risk-level-pill pill-{risk}">{risk.upper()}</span>
                 </div>
                 """, unsafe_allow_html=True)
 
@@ -750,9 +737,7 @@ with tab2:
             st.markdown("""
             <div class="empty-state">
                 <div class="empty-icon">🛡️</div>
-                <div class="empty-text">
-                    Enter a brand name and click Scan
-                </div>
+                <div class="empty-text">Enter a brand name and click Scan</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -761,6 +746,6 @@ st.markdown("""
 <div class="footer">
     ⚡ PULSEINTEL — WEB DATA UNLOCKED HACKATHON 2026
     &nbsp;·&nbsp; POWERED BY BRIGHT DATA + GROQ
-    &nbsp;·&nbsp; BUILT WITH ❤️ by WeCoders
+    &nbsp;·&nbsp; BUILT WITH ❤️ BY WECODERS
 </div>
 """, unsafe_allow_html=True)
